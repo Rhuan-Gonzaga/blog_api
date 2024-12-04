@@ -35,3 +35,22 @@ def criar_postagem():
 def obter_postagem(id):
     postagem = Postagem.query.get_or_404(id)
     return jsonify({"id": postagem.id, "titulo": postagem.titulo, "conteudo": postagem.conteudo, "usuario_id": postagem.usuario_id})
+
+#Editando o post pelo id
+@routes.route('/atualizarpost/<int:id>', methods=['PUT'])
+def atualizar_postagem(id):
+    data = request.json
+
+    postagem = Postagem.query.get(id)
+
+    if not postagem:
+        return jsonify({"erro": "Postagem não encontrada"}), 404
+
+    postagem.titulo = data.get('titulo', postagem.titulo)  
+    postagem.conteudo = data.get('conteudo', postagem.conteudo)
+   
+
+    db.session.commit()
+
+    return jsonify({"mensagem": "Postagem atualizada com sucesso!"}), 200
+
