@@ -1,4 +1,4 @@
-## Personal Blogging Platform API
+## API da plataforma de blog pessoal
 
 <img src="https://github.com/Rhuan-Gonzaga/blog_api/blob/master/blogging-platform-api.png">
 
